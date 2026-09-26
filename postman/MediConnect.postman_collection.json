@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "MediConnect Enterprise Pro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Public",
+      "item": [
+        {"name":"Specialties","request":{"method":"GET","url":"{{baseUrl}}/api/v1/specialties"}},
+        {"name":"Register patient","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{patientEmail}}\",\n  \"password\": \"{{patientPassword}}\",\n  \"firstName\": \"Daniel\",\n  \"lastName\": \"Perez\",\n  \"birthDate\": \"1994-05-11\",\n  \"phone\": \"+573001112233\",\n  \"address\": \"Barranquilla\"\n}"},"url":"{{baseUrl}}/api/v1/auth/register"}},
+        {"name":"Login","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{loginEmail}}\",\n  \"password\": \"{{loginPassword}}\"\n}"},"url":"{{baseUrl}}/api/v1/auth/login"}}
+      ]
+    },
+    {
+      "name": "Patient",
+      "item": [
+        {"name":"My profile","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"}],"url":"{{baseUrl}}/api/v1/patients/me"}},
+        {"name":"Update profile","request":{"method":"PATCH","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"firstName\": \"Daniel\",\n  \"lastName\": \"Perez\",\n  \"birthDate\": \"1994-05-11\",\n  \"phone\": \"+573001112233\",\n  \"address\": \"Barranquilla\"\n}"},"url":"{{baseUrl}}/api/v1/patients/me"}},
+        {"name":"Doctors by specialty","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"}],"url":"{{baseUrl}}/api/v1/doctors?specialtyId={{specialtyId}}"}},
+        {"name":"Book appointment","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"doctorId\": \"{{doctorId}}\",\n  \"officeId\": \"{{officeId}}\",\n  \"startTime\": \"{{appointmentStart}}\",\n  \"endTime\": \"{{appointmentEnd}}\"\n}"},"url":"{{baseUrl}}/api/v1/appointments"}},
+        {"name":"My appointments","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"}],"url":"{{baseUrl}}/api/v1/appointments/me"}},
+        {"name":"Cancel appointment","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"}],"url":"{{baseUrl}}/api/v1/appointments/{{appointmentId}}"}},
+        {"name":"My clinical notes","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{patientToken}}"}],"url":"{{baseUrl}}/api/v1/clinical-notes/me"}}
+      ]
+    },
+    {
+      "name": "Doctor",
+      "item": [
+        {"name":"Daily agenda","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{doctorToken}}"}],"url":"{{baseUrl}}/api/v1/appointments/doctor/today"}},
+        {"name":"Complete appointment","request":{"method":"PATCH","header":[{"key":"Authorization","value":"Bearer {{doctorToken}}"}],"url":"{{baseUrl}}/api/v1/appointments/{{appointmentId}}/complete"}},
+        {"name":"Create clinical note","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{doctorToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"content\": \"Nota de evolución de prueba\"\n}"},"url":"{{baseUrl}}/api/v1/appointments/{{appointmentId}}/clinical-notes"}},
+        {"name":"Create prescription","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{doctorToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"items\": [{\n    \"drugName\": \"amoxicillin\",\n    \"dose\": \"500 mg\",\n    \"frequency\": \"cada 8 horas\",\n    \"duration\": \"7 días\"\n  }]\n}"},"url":"{{baseUrl}}/api/v1/appointments/{{appointmentId}}/prescriptions"}}
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {"name":"Create doctor","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{doctorEmail}}\",\n  \"temporaryPassword\": \"{{doctorPassword}}\",\n  \"firstName\": \"Laura\",\n  \"lastName\": \"Gomez\",\n  \"medicalLicense\": \"RM-10001\",\n  \"specialtyId\": \"{{specialtyId}}\"\n}"},"url":"{{baseUrl}}/api/v1/admin/doctors"}},
+        {"name":"List offices","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/api/v1/admin/offices"}},
+        {"name":"Create office","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Consultorio Norte\",\n  \"address\": \"Carrera 53 # 80-67\",\n  \"roomNumber\": \"301\",\n  \"active\": true\n}"},"url":"{{baseUrl}}/api/v1/admin/offices"}},
+        {"name":"Update office","request":{"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Consultorio Norte\",\n  \"address\": \"Carrera 53 # 80-67\",\n  \"roomNumber\": \"302\",\n  \"active\": true\n}"},"url":"{{baseUrl}}/api/v1/admin/offices/{{officeId}}"}},
+        {"name":"Delete office","request":{"method":"DELETE","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/api/v1/admin/offices/{{officeId}}"}},
+        {"name":"Custom actuator","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/actuator/mediconnect"}},
+        {"name":"Late cancellation metric","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/actuator/metrics/mediconnect.late_cancellations"}},
+        {"name":"Circuit fallback metric","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{adminToken}}"}],"url":"{{baseUrl}}/actuator/metrics/mediconnect.circuit_breaker_fallbacks"}}
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        {"name":"Actuator health","request":{"method":"GET","url":"{{baseUrl}}/actuator/health"}},
+        {"name":"Actuator info","request":{"method":"GET","url":"{{baseUrl}}/actuator/info"}}
+      ]
+    }
+  ],
+  "variable": [
+    {"key":"baseUrl","value":"http://localhost:8080"},
+    {"key":"loginEmail","value":""},
+    {"key":"loginPassword","value":""},
+    {"key":"patientEmail","value":""},
+    {"key":"patientPassword","value":""},
+    {"key":"doctorEmail","value":""},
+    {"key":"doctorPassword","value":""},
+    {"key":"adminToken","value":""},
+    {"key":"patientToken","value":""},
+    {"key":"doctorToken","value":""},
+    {"key":"specialtyId","value":""},
+    {"key":"doctorId","value":""},
+    {"key":"officeId","value":""},
+    {"key":"appointmentId","value":""},
+    {"key":"appointmentStart","value":""},
+    {"key":"appointmentEnd","value":""}
+  ]
+}
