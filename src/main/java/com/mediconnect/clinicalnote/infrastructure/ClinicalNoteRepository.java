@@ -1,0 +1,1 @@
+package com.mediconnect.clinicalnote.infrastructure; import java.util.*; import com.mediconnect.clinicalnote.domain.ClinicalNoteDocument; import org.springframework.data.mongodb.repository.MongoRepository; public interface ClinicalNoteRepository extends MongoRepository<ClinicalNoteDocument,String>{List<ClinicalNoteDocument> findByPatientIdOrderByCreatedAtDesc(UUID patientId);}

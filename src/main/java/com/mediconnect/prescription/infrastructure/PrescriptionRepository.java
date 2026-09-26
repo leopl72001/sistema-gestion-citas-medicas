@@ -1,0 +1,1 @@
+package com.mediconnect.prescription.infrastructure; import java.util.UUID; import com.mediconnect.prescription.domain.PrescriptionEntity; import org.springframework.data.jpa.repository.JpaRepository; public interface PrescriptionRepository extends JpaRepository<PrescriptionEntity,UUID>{}

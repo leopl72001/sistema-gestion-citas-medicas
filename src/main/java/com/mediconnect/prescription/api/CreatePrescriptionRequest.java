@@ -1,0 +1,1 @@
+package com.mediconnect.prescription.api; import java.util.List; import jakarta.validation.Valid; import jakarta.validation.constraints.*; public record CreatePrescriptionRequest(@NotEmpty @Size(max=30) List<@Valid PrescriptionItemRequest> items) {}

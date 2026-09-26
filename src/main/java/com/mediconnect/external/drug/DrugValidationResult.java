@@ -1,0 +1,1 @@
+package com.mediconnect.external.drug; import java.io.Serializable; import com.mediconnect.prescription.domain.MedicationValidationStatus; public record DrugValidationResult(String drugName,MedicationValidationStatus validationStatus,String detail) implements Serializable {}

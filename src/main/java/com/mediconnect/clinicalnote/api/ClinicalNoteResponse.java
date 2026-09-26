@@ -1,0 +1,1 @@
+package com.mediconnect.clinicalnote.api; import java.time.Instant; import java.util.UUID; public record ClinicalNoteResponse(String id,UUID appointmentId,UUID patientId,UUID doctorId,String content,Instant createdAt,String createdBy) {}

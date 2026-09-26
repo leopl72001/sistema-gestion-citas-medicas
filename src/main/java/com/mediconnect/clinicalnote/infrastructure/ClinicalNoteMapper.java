@@ -1,0 +1,1 @@
+package com.mediconnect.clinicalnote.infrastructure; import com.mediconnect.clinicalnote.api.ClinicalNoteResponse; import com.mediconnect.clinicalnote.domain.ClinicalNoteDocument; import org.mapstruct.Mapper; @Mapper(componentModel="spring") public interface ClinicalNoteMapper { ClinicalNoteResponse toResponse(ClinicalNoteDocument document); }

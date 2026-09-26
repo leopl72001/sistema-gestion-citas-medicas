@@ -1,0 +1,1 @@
+package com.mediconnect.prescription.api; import jakarta.validation.constraints.*; public record PrescriptionItemRequest(@NotBlank @Size(max=180) String drugName,@NotBlank @Size(max=120) String dose,@NotBlank @Size(max=120) String frequency,@NotBlank @Size(max=120) String duration) {}

@@ -1,0 +1,1 @@
+package com.mediconnect.prescription.api; import java.util.*; import com.mediconnect.prescription.domain.MedicationValidationStatus; public record PrescriptionResponse(UUID id,UUID appointmentId,UUID doctorId,UUID patientId,MedicationValidationStatus validationStatus,List<PrescriptionItemResponse> items) {}
