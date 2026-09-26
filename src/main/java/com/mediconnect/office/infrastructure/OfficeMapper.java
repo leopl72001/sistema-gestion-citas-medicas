@@ -1,0 +1,1 @@
+package com.mediconnect.office.infrastructure; import com.mediconnect.office.api.OfficeResponse; import com.mediconnect.office.domain.OfficeEntity; import org.mapstruct.Mapper; @Mapper(componentModel="spring") public interface OfficeMapper { OfficeResponse toResponse(OfficeEntity entity); }

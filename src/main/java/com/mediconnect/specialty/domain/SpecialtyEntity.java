@@ -1,0 +1,3 @@
+package com.mediconnect.specialty.domain;
+import java.util.UUID; import com.mediconnect.shared.audit.AuditableEntity; import jakarta.persistence.*;
+@Entity @Table(name="specialties") public class SpecialtyEntity extends AuditableEntity { @Id @GeneratedValue(strategy=GenerationType.UUID) private UUID id; @Column(nullable=false,unique=true,length=120) private String name; @Column(length=500) private String description; protected SpecialtyEntity(){} public SpecialtyEntity(String name,String description){this.name=name;this.description=description;} public UUID getId(){return id;} public String getName(){return name;} public String getDescription(){return description;} }

@@ -1,0 +1,1 @@
+package com.mediconnect.office.infrastructure; import java.util.UUID; import com.mediconnect.office.domain.OfficeEntity; import org.springframework.data.jpa.repository.JpaRepository; public interface OfficeRepository extends JpaRepository<OfficeEntity,UUID>{}

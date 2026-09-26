@@ -1,0 +1,3 @@
+package com.mediconnect.specialty.application;
+import java.util.List; import com.mediconnect.specialty.api.SpecialtyResponse; import com.mediconnect.specialty.infrastructure.*; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional;
+@Service public class SpecialtyService { private final SpecialtyRepository repository; private final SpecialtyMapper mapper; public SpecialtyService(SpecialtyRepository repository,SpecialtyMapper mapper){this.repository=repository;this.mapper=mapper;} @Transactional(readOnly=true) public List<SpecialtyResponse> list(){return repository.findAll().stream().map(mapper::toResponse).toList();} }

@@ -1,0 +1,3 @@
+package com.mediconnect.doctor.infrastructure;
+import java.util.*; import com.mediconnect.doctor.domain.DoctorEntity; import jakarta.persistence.LockModeType; import org.springframework.data.jpa.repository.*; import org.springframework.data.repository.query.Param;
+public interface DoctorRepository extends JpaRepository<DoctorEntity,UUID>{Optional<DoctorEntity> findByUserEmailIgnoreCase(String email);List<DoctorEntity> findBySpecialtyIdAndActiveTrueOrderByLastNameAsc(UUID specialtyId);boolean existsByMedicalLicenseIgnoreCase(String medicalLicense);@Lock(LockModeType.PESSIMISTIC_WRITE) @Query("select d from DoctorEntity d where d.id = :doctorId") Optional<DoctorEntity> findByIdForUpdate(@Param("doctorId") UUID doctorId);}
